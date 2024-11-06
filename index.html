@@ -35,7 +35,7 @@
         const firebaseConfig = {
             apiKey: "AIzaSyC6P2AGh06GOtNEGIo_fYy7C6qPygQZqxs",
             authDomain: "teszt-d6a4c.firebaseapp.com",
-            databaseURL: "https://teszt-d6a4c-default-rtdb.firebaseio.com", // hozzáadtam a databaseURL-t
+            databaseURL: "https://teszt-d6a4c-default-rtdb.firebaseio.com",
             projectId: "teszt-d6a4c",
             storageBucket: "teszt-d6a4c.appspot.com",
             messagingSenderId: "126704378824",
@@ -43,18 +43,23 @@
         };
 
         // Firebase inicializálása
-        const app = firebase.initializeApp(firebaseConfig);
+        firebase.initializeApp(firebaseConfig);
         const database = firebase.database();
 
         // Időzítő elérése az adatbázisból
         const timerRef = database.ref('timer');
 
-        // Tesztelés: Írj az adatbázisba és olvass onnan
-        timerRef.set(3600); // Példaként állíts be egy időt (3600 másodperc = 1 óra)
+        // Timer értékének beállítása
+        timerRef.set(3600).then(() => {
+            console.log('Timer sikeresen beállítva');
+        }).catch((error) => {
+            console.error('Hiba történt a timer beállítása során:', error);
+        });
 
+        // Timer értékének olvasása
         timerRef.on('value', (snapshot) => {
+            console.log('Timer értéke:', snapshot.val());
             const time = snapshot.val();
-            console.log('Timer értéke:', time); // Nézd meg a konzolon az értéket
             document.getElementById('timer').textContent = formatTime(time);
         });
 
