@@ -31,19 +31,23 @@
     <button id="resetButton">Időzítő Visszaállítása</button>
 
     <script>
-        // Firebase konfiguráció
-        const firebaseConfig = {
-            apiKey: "AIzaSyC6P2AGh06GOtNEGIo_fYy7C6qPygQZqxs",
-            authDomain: "teszt-d6a4c.firebaseapp.com",
-            databaseURL: "https://teszt-d6a4c-default-rtdb.firebaseio.com", // hozzáadtam a databaseURL-t
-            projectId: "teszt-d6a4c",
-            storageBucket: "teszt-d6a4c.appspot.com",
-            messagingSenderId: "126704378824",
-            appId: "1:126704378824:web:40d560ddde8e52992e56fd"
-        };
+        // Import the functions you need from the SDKs you need
+import { initializeApp } from "firebase/app";
+// TODO: Add SDKs for Firebase products that you want to use
+// https://firebase.google.com/docs/web/setup#available-libraries
 
-        // Firebase inicializálása
-        const app = firebase.initializeApp(firebaseConfig);
+// Your web app's Firebase configuration
+const firebaseConfig = {
+  apiKey: "AIzaSyC6P2AGh06GOtNEGIo_fYy7C6qPygQZqxs",
+  authDomain: "teszt-d6a4c.firebaseapp.com",
+  projectId: "teszt-d6a4c",
+  storageBucket: "teszt-d6a4c.firebasestorage.app",
+  messagingSenderId: "126704378824",
+  appId: "1:126704378824:web:40d560ddde8e52992e56fd"
+};
+
+// Initialize Firebase
+const app = initializeApp(firebaseConfig);
         const database = firebase.database();
 
         // Időzítő elérése az adatbázisból
